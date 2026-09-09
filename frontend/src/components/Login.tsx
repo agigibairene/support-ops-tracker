@@ -1,15 +1,15 @@
-import { FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, clearError } from "../redux/authSlice";
 import type { RootState, AppDispatch } from "../redux/store";
-
-
+import { useAuth } from "./AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const { user, login } = useAuth();
 
   const { isLoading, error } = useSelector((state:RootState) => state.auth);
 
@@ -33,6 +33,12 @@ export default function Login() {
     dispatch(clearError());
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>
   ) => {
@@ -53,6 +59,7 @@ export default function Login() {
     const result = await dispatch(loginUser(formData));
 
     if (loginUser.fulfilled.match(result)) {
+      login(result.payload);
       navigate("/dashboard");
     }
   };

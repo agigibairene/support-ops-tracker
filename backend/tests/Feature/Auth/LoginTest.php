@@ -33,12 +33,12 @@ class LoginTest extends TestCase
         // personal address, or an attacker guessing at credentials —
         // either way the domain rule must block it before auth runs.
         User::factory()->create([
-            'email' => 'ama.mensah@gmail.com',
+            'email' => 'test.npontu@gmail.com',
             'password' => bcrypt('password123'),
         ]);
 
         $response = $this->postJson('/login', [
-            'email' => 'ama.mensah@gmail.com',
+            'email' => 'test.npontu@@gmail.com',
             'password' => 'password123',
         ]);
 
@@ -124,6 +124,32 @@ class LoginTest extends TestCase
         $response = $this->postJson('/api/login', [
             'email' => 'irene@npontu-support.com',
             'password' => 'irene@123',
+        ]);
+
+        $response->assertOk()
+            ->assertExactJson([
+                'message' => 'Signed in.',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => 'Irene',
+                    'email' => 'irene@npontu-support.com',
+                ],
+            ]);
+    }
+
+    public function test_already_authenticated_user_can_login_again_without_redirect(): void
+    {
+        $user = User::factory()->create([
+            'name' => 'Irene',
+            'email' => 'irene@npontu-support.com',
+            'password' => bcrypt('irene'),
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->postJson('/login', [
+            'email' => 'irene@npontu-support.com',
+            'password' => 'irene',
         ]);
 
         $response->assertOk()

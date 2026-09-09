@@ -13,12 +13,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->statefulApi();
         $middleware->validateCsrfTokens(except: [
             'login',
+            'login/*',
+            'api/*',
+            'api',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*') || $request->is('login') || $request->expectsJson(),
+            fn (Request $request) => $request->is('api/*') || $request->is('login*') || $request->expectsJson(),
         );
     })->create();
