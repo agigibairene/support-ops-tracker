@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import { useAuth } from "./components/AuthContext";
+import Sidebar from "./components/dashboard/Sidebar";
+import { useAuth } from "./components/dashboard/AuthContext";
+import { Toaster } from "sonner";
 
 function App() {
   const { user, loading } = useAuth();
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      <Toaster richColors position="top-right" />
       <Sidebar />
       <main className="ml-64 min-h-screen bg-slate-50">
         <Outlet />

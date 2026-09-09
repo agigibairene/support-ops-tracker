@@ -8,9 +8,9 @@ import {
   ClipboardList,
   BarChart3,
 } from "lucide-react";
-import { getDailyView } from "../Api";
+import { getDailyView } from "../../Api";
 import { useAuth } from "./AuthContext";
-import type { Activity } from "../types";
+import type { Activity } from "../../types";
 
 export default function Dashboard() {
   const { user } = useAuth();

@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, clearError } from "../redux/authSlice";
 import type { RootState, AppDispatch } from "../redux/store";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./dashboard/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -67,17 +67,17 @@ export default function Login() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center bg-[#F6F5F2] px-6 py-16 sm:px-10">
       <div
-        className="ops-sans w-full max-w-90 rounded-2xl bg-white px-9 py-10"
+        className="ops-sans w-full max-w-md rounded-2xl bg-white px-9 py-10"
         style={{
           boxShadow:
             "0 2px 8px rgba(18,24,31,0.04), 0 16px 40px -12px rgba(18,24,31,0.18)",
         }}
       >
-        <p className="text-center text-[15px] font-semibold text-[#12181F]">
+        <p className="text-center text-[15px] font-semibold text-[#2451D6]">
           Welcome back to Support ops !!
         </p>
 
-        <h1 className="mt-5 text-center text-[26px] font-semibold leading-tight text-[#12181F]">
+        <h1 className="mt-5 text-center text-[26px] font-semibold leading-tight text-[#2451D6]">
           Login
         </h1>
 
@@ -165,7 +165,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className="flex h-11 w-full cursor-pointer items-center justify-center rounded-md bg-blue-400 text-sm font-medium text-white transition-colors hover:bg-blue-600 hover:text-[#12181F] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-11 w-full cursor-pointer items-center justify-center text-white rounded-md bg-[#2451D6] text-sm font-medium transition-colors hover:bg-blue-600 hover:text-[#12181F] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoading ? (
               <>
@@ -178,9 +178,6 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="mt-10 text-xs text-[#B4B7B2]">
-          © {new Date().getFullYear()} Support ops tracker
-        </p>
       </div>
     </main>
   );

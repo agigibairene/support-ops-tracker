@@ -15,9 +15,8 @@ An enterprise-grade operational tracking and shift handover platform built for A
   - [Frontend Setup (React + Vite)](#2-frontend-setup-react--vite)
 - [Default Team Credentials](#default-team-credentials)
 - [API Documentation](#api-documentation)
-- [Testing & Quality Assurance](#testing--quality-assurance)
+- [Testing](#testing)
 - [Security & Authentication](#security--authentication)
-- [License](#license)
 
 ---
 
@@ -57,12 +56,12 @@ An enterprise-grade operational tracking and shift handover platform built for A
 ### Backend
 - **Framework**: Laravel 11.x (PHP 8.2+)
 - **Authentication**: Laravel Sanctum (Dual-layer: Stateful SPA Cookies + Personal Access Bearer Tokens)
-- **Database**: SQLite (or MySQL / PostgreSQL compatible)
+- **Database**: SQLite 
 - **Testing**: PHPUnit / Pest with RefreshDatabase
 
 ### Frontend
 - **Framework**: React 19 + TypeScript
-- **Bundler & Tooling**: Vite, ESLint, TypeScript Compiler (`tsc`)
+- **Bundler & Tooling**: Vite, ESLint
 - **Styling**: Tailwind CSS v4
 - **State Management**: Redux Toolkit & React Context API
 - **Routing**: React Router v7
@@ -105,21 +104,24 @@ support-ops-tracker/
 ├── frontend/                             # React SPA Application
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Activities.tsx                        # Activity definition & registry UI
-│   │   │   ├── AuthContext.tsx                       # Auth state provider & session persistence
-│   │   │   ├── DailyLog.tsx                          # Daily log, handover banner & status updater
-│   │   │   ├── Dashboard.tsx                         # Overview dashboard & shift handover priority
-│   │   │   ├── Login.tsx                             # Clean authentication UI
-│   │   │   ├── Profile.tsx                           # User profile display
-│   │   │   ├── Reports.tsx                           # Custom date query & CSV exporter
-│   │   │   └── Sidebar.tsx                           # Global navigation sidebar
+│   │   │   ├── dashboard/
+│   │   │   │   ├── Activities.tsx            # Activity definition & registry UI
+│   │   │   │   ├── AuthContext.tsx           # Auth state provider & session persistence
+│   │   │   │   ├── DailyLog.tsx              # Daily log, handover banner & status updater
+│   │   │   │   ├── Dashboard.tsx             # Overview dashboard & shift handover priority
+│   │   │   │   ├── Profile.tsx               # User profile display
+│   │   │   │   ├── Reports.tsx               # Custom date query & CSV exporter
+│   │   │   │   ├── Settings.tsx              # Team and account settings UI
+│   │   │   │   └── Sidebar.tsx               # Global navigation sidebar
+│   │   │   ├── HomePage.tsx                  # Landing page matching dashboard styling
+│   │   │   └── Login.tsx                     # Authentication UI
 │   │   ├── redux/
-│   │   │   ├── authSlice.ts                          # Redux auth state slice
-│   │   │   └── store.ts                              # Redux store configuration
-│   │   ├── Api.tsx                                   # Axios client with token & error interceptors
-│   │   ├── App.tsx                                   # Main layout & auth protection guard
-│   │   ├── main.tsx                                  # React root & browser router
-│   │   └── types.ts                                  # TypeScript interfaces & models
+│   │   │   ├── authSlice.ts                  # Redux auth state slice
+│   │   │   └── store.ts                      # Redux store configuration
+│   │   ├── Api.tsx                           # Axios client with token & error interceptors
+│   │   ├── App.tsx                           # Main layout & auth protection guard
+│   │   ├── main.tsx                          # React root & browser router
+│   │   └── types.ts                          # TypeScript interfaces & models
 │   ├── package.json
 │   └── vite.config.ts
 │
@@ -187,7 +189,7 @@ pnpm install
 
 Start the frontend development server:
 ```bash
-pnpm dev
+pnpm run dev
 # or: npm run dev
 ```
 The application will be accessible in your browser at `http://localhost:5173`.
@@ -221,8 +223,8 @@ All operational endpoints under `/api/*` require authentication (Sanctum session
   - **Payload**:
     ```json
     {
-      "name": "Daily SMS count in comparison to SMScount from logs",
-      "description": "Cross-reference SMS aggregation table records against server delivery logs."
+      "name": "Daily SMS count ",
+      "description": "SMS aggregation and table records"
     }
     ```
 
@@ -243,21 +245,13 @@ All operational endpoints under `/api/*` require authentication (Sanctum session
 
 ---
 
-## Testing & Quality Assurance
+## Testing 
 
 ### Backend Automated Tests
 Execute the complete PHPUnit test suite (including authentication tests, activity CRUD, status updating, personnel bio attribution, daily views, and report querying):
 ```bash
 cd backend
 php artisan test
-```
-
-### Frontend Type Checking & Code Quality
-Execute ESLint and TypeScript production build verification:
-```bash
-cd frontend
-pnpm lint
-pnpm build
 ```
 
 ---
@@ -271,6 +265,3 @@ pnpm build
 
 ---
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

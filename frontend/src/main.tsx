@@ -6,33 +6,40 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Login from './components/Login.tsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
-import { AuthProvider } from "./components/AuthContext";
-import Dashboard from './components/Dashboard';
-import Activities from './components/Activities';
-import DailyLog from './components/DailyLog';
-import Reports from './components/Reports';
-import Profile from './components/Profile';
-import Settings from './components/Settings';
+import { AuthProvider } from "./components/dashboard/AuthContext.tsx";
+import Dashboard from './components/dashboard/Dashboard.tsx';
+import Activities from './components/dashboard/Activities.tsx';
+import DailyLog from './components/dashboard/DailyLog.tsx';
+import Reports from './components/dashboard/Reports.tsx';
+import Profile from './components/dashboard/Profile.tsx';
+import Settings from './components/dashboard/Settings.tsx';
+import HomePage from './components/HomePage.tsx';
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    children: [
-      { index: true, element: <Navigate to="/dashboard" replace /> },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'activities', element: <Activities /> },
-      { path: 'daily-log', element: <DailyLog /> },
-      { path: 'reports', element: <Reports /> },
-      { path: 'profile', element: <Profile /> },
-      { path: 'settings', element: <Settings /> },
-    ],
+    element: <HomePage />
   },
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    element: <App />,
+    children: [
+      { path: '/dashboard', element: <Dashboard /> },
+      { path: '/activities', element: <Activities /> },
+      { path: '/daily-log', element: <DailyLog /> },
+      { path: '/reports', element: <Reports /> },
+      { path: '/profile', element: <Profile /> },
+      { path: '/settings', element: <Settings /> },
+    ],
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />
   }
-])
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         );
 
         $paymentActivity = Activity::firstOrCreate(
-            ['name' => 'Payment Gateway Callback & Webhook Reconciliation'],
+            ['name' => 'Payment Gateway Callback'],
             [
                 'description' => 'Verify pending payment callbacks with partner aggregator APIs and reconcile unsettled transactions.',
                 'created_by' => $kwame->id,
@@ -63,27 +63,27 @@ class DatabaseSeeder extends Seeder
         );
 
         $dbBackupActivity = Activity::firstOrCreate(
-            ['name' => 'Database Backup & Replication Health Check'],
+            ['name' => 'Database Backup'],
             [
-                'description' => 'Confirm snapshot creation, S3 replication sync, and database replica lag within acceptable threshold (<5s).',
+                'description' => 'Confirm snapshot creation.',
                 'created_by' => $ama->id,
                 'is_active' => true,
             ]
         );
 
         $queueActivity = Activity::firstOrCreate(
-            ['name' => 'Queue Worker & Failed Jobs Inspection'],
+            ['name' => 'Failed Jobs Inspection'],
             [
-                'description' => 'Inspect Redis job queues, process failed jobs table, and verify notification retry pipelines.',
+                'description' => 'Inspect Redis job queues.',
                 'created_by' => $irene->id,
                 'is_active' => true,
             ]
         );
 
         $errorLogActivity = Activity::firstOrCreate(
-            ['name' => 'Application Error Log Review & Alert Verification'],
+            ['name' => 'Application Error Log Review'],
             [
-                'description' => 'Scan production log stacks for uncaught 500 exceptions, fatal errors, and alert spikes.',
+                'description' => 'Scan production log stacks.',
                 'created_by' => $kwame->id,
                 'is_active' => true,
             ]
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $kwame->id,
                 'status' => 'done',
-                'remark' => 'SMS count: 18,450 sent vs 18,450 logged. No variance detected.',
+                'remark' => 'SMS count: 18,450 sent vs 18,450 logged.',
                 'created_at' => Carbon::yesterday()->setTime(9, 30),
             ]
         );
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $ama->id,
                 'status' => 'done',
-                'remark' => 'Backups verified clean at 02:00 UTC. Checksum matched.',
+                'remark' => 'Backups verified clean at 02:00 GMT.',
                 'created_at' => Carbon::yesterday()->setTime(8, 15),
             ]
         );
@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $irene->id,
                 'status' => 'done',
-                'remark' => 'Morning count: 12,380 SMS sent vs 12,380 logged. All queues operating within normal latency.',
+                'remark' => 'Morning count: 12,380 SMS sent vs 12,380 logged.',
                 'created_at' => Carbon::today()->setTime(10, 15),
             ]
         );
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $kwame->id,
                 'status' => 'pending',
-                'remark' => 'Awaiting response from Telco aggregator on 14 unresolved callbacks from 08:00 batch. Handing over to next shift.',
+                'remark' => 'Awaiting response from Telco. Handing over to next shift.',
                 'created_at' => Carbon::today()->setTime(11, 45),
             ]
         );
@@ -155,7 +155,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $ama->id,
                 'status' => 'done',
-                'remark' => 'Daily automated snapshot verified successfully. Size 4.2GB.',
+                'remark' => 'Daily automated snapshot verified successfully.',
                 'created_at' => Carbon::today()->setTime(9, 0),
             ]
         );
@@ -168,7 +168,7 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $irene->id,
                 'status' => 'pending',
-                'remark' => '3 jobs failed in notification_retry queue due to timeout. Investigating worker memory footprint.',
+                'remark' => '3 jobs failed in notification_retry queue due to timeout.',
                 'created_at' => Carbon::today()->setTime(13, 10),
             ]
         );

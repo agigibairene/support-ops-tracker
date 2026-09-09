@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Plus, CheckCircle, AlertCircle, Layers } from "lucide-react";
-import { getActivities, createActivity } from "../Api";
-import type { Activity } from "../types";
+import { getActivities, createActivity } from "../../Api";
+import type { Activity } from "../../types";
 
 export default function Activities() {
   const [activities, setActivities] = useState<Activity[]>([]);

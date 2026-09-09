@@ -8,8 +8,8 @@ import {
   Clock,
   Layers,
 } from "lucide-react";
-import { getReport, getActivities } from "../Api";
-import type { Activity, ActivityUpdate } from "../types";
+import { getReport, getActivities } from "../../Api";
+import type { Activity, ActivityUpdate } from "../../types";
 
 const getInitialDates = () => {
   const to = new Date().toISOString().slice(0, 10);

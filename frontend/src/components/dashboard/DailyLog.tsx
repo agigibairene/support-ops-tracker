@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, Clock, AlertTriangle, Calendar, Send, CheckCircle, HelpCircle, ArrowRightLeft, } from "lucide-react";
-import { getDailyView, postUpdate } from "../Api";
-import type { Activity } from "../types";
+import { getDailyView, postUpdate } from "../../Api";
+import type { Activity } from "../../types";
 import { toast } from "sonner";
 
 const todayStr = () => new Date().toISOString().slice(0, 10);
@@ -185,7 +185,7 @@ export default function DailyLog() {
               Shift Handover Notice: {pendingCount} {pendingCount === 1 ? "activity requires" : "activities require"} follow-up
             </p>
             <p className="mt-0.5 text-amber-700">
-              The incoming support personnel should prioritize the pending activities below. Review the latest remarks and timestamps before taking over.
+              The incoming support personnel should prioritize the pending activities below. 
             </p>
           </div>
         </div>
