@@ -1,4 +1,4 @@
-export const baseUrl = 'http://127.0.0.1:8000';
+export const baseUrl = 'https://support-ops-tracker-production.up.railway.app';
 import axios from "axios";
 import type { Activity, ActivityUpdate } from "./types";
 
