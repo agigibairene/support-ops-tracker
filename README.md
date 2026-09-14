@@ -4,6 +4,10 @@ An enterprise-grade operational tracking and shift handover platform built for A
 
 ---
 
+## Deployed Links
+- [Backend](support-ops-tracker-production.up.railway.app)
+- [Frontend](https://support-ops-tracker.vercel.app/)
+
 ## Table of Contents
 
 - [Key Features](#key-features)
